@@ -6,11 +6,12 @@
  <version>0.0.1</version>
  <name>Cloud Pub/Sub Function for GCFv2</name>
 
- <properties>
-  <maven.compiler.release>21</maven.compiler.release>
- </properties>
+    <properties>
+        <maven.compiler.source>21</maven.compiler.source>
+        <maven.compiler.target>21</maven.compiler.target>
+    </properties>
 
- <dependencies>
+    <dependencies>
     <dependency>
      <groupId>com.google.cloud.functions</groupId>
      <artifactId>functions-framework-api</artifactId>
