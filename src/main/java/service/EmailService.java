@@ -66,7 +66,6 @@ public class EmailService {
                 logger.severe("Unexpected code " + response);
             }
             logger.log(Level.INFO, "Body: " + response.body().string());
-            System.out.println(response.body().string());
         } catch (IOException e) {
             logger.severe("Error sending email: " + e.getMessage());
         }
