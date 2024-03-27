@@ -1,0 +1,29 @@
+name: CI for lint
+
+on:
+  pull_request:
+    branches: [main]
+
+jobs:
+  java-lint:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up JDK 21
+        uses: actions/setup-java@v3
+        with:
+          java-version: '21'
+          distribution: 'temurin' # GitHub doesn't support OpenJDK directly
+
+      - name: Cache Maven packages #Caching before any mvn cmd, this strategy is about optimizing for future runs
+        uses: actions/cache@v3
+        with:
+          path: ~/.m2
+          key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }} #new cache entry is created whenever there are changes to pom.xml, ensuring dependencies are up-to-date
+          restore-keys: ${{ runner.os }}-m2
+
+      - name: Compile
+        run: mvn clean install
