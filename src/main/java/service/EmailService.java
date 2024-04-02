@@ -14,7 +14,7 @@ public class EmailService {
     private final String mailgunDomain = "ashutoxh.me";
 
     public void sendEmail(String to, String token) {
-        String verificationLink = "http://ashutoxh.me:8080/v1/user/verify?token=" + token;
+        String verificationLink = "https://ashutoxh.me/v1/user/verify?token=" + token;
         logger.info("Attempting to send mail to " + to + " with link " + verificationLink);
         HttpUrl.Builder urlBuilder = HttpUrl.parse("https://api.mailgun.net/v3/" + mailgunDomain + "/messages").newBuilder();
         String url = urlBuilder.build().toString();
